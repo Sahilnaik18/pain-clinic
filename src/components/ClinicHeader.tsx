@@ -5,13 +5,13 @@ import { motion } from 'framer-motion';
 
 export default function ClinicHeader() {
   return (
-    <div className="relative text-center px-4 pt-3 pb-3">
+    <div className="relative text-center px-4 pt-2 pb-2">
       {/* Hero Tagline at Top */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="mb-3"
+        className="mb-2"
       >
         <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full shadow-sm border border-white/30">
           <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
@@ -30,7 +30,7 @@ export default function ClinicHeader() {
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.1 }}
-        className="flex justify-center mb-3"
+        className="flex justify-center mb-2"
       >
         <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center shadow-xl relative border-4 border-white/50">
           <img
@@ -67,7 +67,7 @@ export default function ClinicHeader() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="text-sm text-white/90 font-medium mb-3"
+        className="text-sm text-white/90 font-medium mb-2"
       >
         {clinic.tagline}
       </motion.p>

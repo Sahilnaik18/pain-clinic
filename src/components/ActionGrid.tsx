@@ -75,10 +75,10 @@ export default function ActionGrid() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="px-3 pb-2 flex-shrink-0"
+        className="px-3 pb-1 flex-shrink-0"
       >
         {/* Top 3 Primary Actions */}
-        <div className="grid grid-cols-3 gap-3 mb-3">
+        <div className="grid grid-cols-3 gap-2 mb-2">
           {/* Website */}
           <motion.button
             variants={item}
@@ -196,7 +196,7 @@ export default function ActionGrid() {
         {/* Social Media Icons Row */}
         <motion.div
           variants={item}
-          className="flex items-center justify-center gap-4 mb-2"
+          className="flex items-center justify-center gap-4 mb-1"
         >
           <button
             onClick={handleInstagram}

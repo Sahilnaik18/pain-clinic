@@ -46,9 +46,9 @@ export default function TherapistCarousel() {
   const currentTherapist = therapists[currentIndex];
 
   return (
-    <div className="px-4 pb-3 flex-shrink-0">
+    <div className="px-4 pb-2 flex-shrink-0">
       {/* Section Title */}
-      <div className="relative mb-3">
+      <div className="relative mb-2">
         <div className="flex items-center gap-2">
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/40 to-white/30" />
           <div className="px-3 py-1 bg-white/95 rounded-full border border-white shadow-md">
@@ -58,7 +58,7 @@ export default function TherapistCarousel() {
           </div>
           <div className="flex-1 h-px bg-gradient-to-l from-transparent via-white/40 to-white/30" />
         </div>
-        <p className="text-center text-[9px] text-white/90 mt-1.5 font-medium">Expert Care, Better Recovery</p>
+        <p className="text-center text-[9px] text-white/90 mt-1 font-medium">Expert Care, Better Recovery</p>
       </div>
 
       {/* Main Carousel Card */}
