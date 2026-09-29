@@ -4,19 +4,16 @@ import { therapists } from '../data/therapists';
 
 export default function TherapistCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const [direction, setDirection] = useState(0);
 
   useEffect(() => {
-    if (isPaused) return;
-
     const interval = setInterval(() => {
       setDirection(1);
       setCurrentIndex((prev) => (prev + 1) % therapists.length);
     }, 4000); // Changed to 4 seconds for better viewing
 
     return () => clearInterval(interval);
-  }, [isPaused]);
+  }, []);
 
   const slideVariants = {
     enter: (direction: number) => ({
