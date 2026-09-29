@@ -2,8 +2,25 @@ import { MapPin, Clock } from 'lucide-react';
 import { clinic } from '../data/clinic';
 import StatusBadge from './StatusBadge';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 export default function ClinicHeader() {
+  const [displayHours, setDisplayHours] = useState({
+    open: clinic.openingHours.open,
+    close: clinic.openingHours.close
+  });
+
+  useEffect(() => {
+    const savedSettings = localStorage.getItem('clinicSettings');
+    if (savedSettings) {
+      const settings = JSON.parse(savedSettings);
+      setDisplayHours({
+        open: settings.openTime,
+        close: settings.closeTime
+      });
+    }
+  }, []);
+
   return (
     <div className="relative text-center px-4 pt-2 pb-2">
       {/* Hero Tagline at Top */}
@@ -86,7 +103,7 @@ export default function ClinicHeader() {
         <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/95 rounded-full shadow-sm border border-white">
           <Clock className="w-3.5 h-3.5 text-green-600" />
           <span className="text-xs font-medium text-slate-800">
-            {clinic.openingHours.open} - {clinic.openingHours.close}
+            {displayHours.open} - {displayHours.close}
           </span>
         </div>
 

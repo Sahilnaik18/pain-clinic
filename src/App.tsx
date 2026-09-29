@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import PainClinic from './pages/PainClinic';
 import QRGenerator from './pages/QRGenerator';
+import AdminSettings from './pages/AdminSettings';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/pain-clinic" element={<PainClinic />} />
         <Route path="/qr" element={<QRGenerator />} />
+        <Route path="/settings" element={<AdminSettings />} />
         <Route path="/" element={<Navigate to="/pain-clinic" replace />} />
       </Routes>
     </BrowserRouter>
