@@ -15,5 +15,5 @@ export const clinic = {
   mapUrl: "https://share.google/92FCPJiAprZypMkE4",
   reviewsUrl: "REPLACE_WITH_GOOGLE_MAPS_REVIEWS_LINK",
   instagramUrl: "REPLACE_WITH_INSTAGRAM_LINK",
-  shareUrl: "https://spinephysio.in"
+  shareUrl: "https://pain-clinic-otmy.vercel.app/pain-clinic"
 };
