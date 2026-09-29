@@ -80,7 +80,7 @@ export default function TherapistCarousel() {
                     <img
                       src={currentTherapist.image}
                       alt={currentTherapist.name}
-                      className={`w-full h-full ${currentTherapist.image.includes('therapist-10') ? 'object-cover object-[center_30%]' : 'object-cover'}`}
+                      className={`w-full h-full ${currentTherapist.image.includes('therapist-10') ? 'object-cover object-top' : 'object-cover'}`}
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         target.style.display = 'none';
