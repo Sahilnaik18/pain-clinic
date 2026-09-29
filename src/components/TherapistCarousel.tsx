@@ -5,15 +5,67 @@ import { therapists } from '../data/therapists';
 export default function TherapistCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   useEffect(() => {
+    if (isPaused) return;
+
     const interval = setInterval(() => {
       setDirection(1);
       setCurrentIndex((prev) => (prev + 1) % therapists.length);
-    }, 4000); // Changed to 4 seconds for better viewing
+    }, 4000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isPaused]);
+
+  // Swipe gesture handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      goToNext();
+    }
+    if (isRightSwipe) {
+      goToPrevious();
+    }
+  };
+
+  const goToNext = () => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % therapists.length);
+    pauseAutoRotation();
+  };
+
+  const goToPrevious = () => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev - 1 + therapists.length) % therapists.length);
+    pauseAutoRotation();
+  };
+
+  const goToSlide = (index: number) => {
+    setDirection(index > currentIndex ? 1 : -1);
+    setCurrentIndex(index);
+    pauseAutoRotation();
+  };
+
+  const pauseAutoRotation = () => {
+    setIsPaused(true);
+    setTimeout(() => setIsPaused(false), 8000); // Resume after 8 seconds
+  };
 
   const slideVariants = {
     enter: (direction: number) => ({
@@ -54,7 +106,14 @@ export default function TherapistCarousel() {
       {/* Main Carousel Card */}
       <div className="relative">
         {/* Card Container */}
-        <div className="overflow-hidden">
+        <div
+          className="overflow-hidden"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentIndex}
@@ -69,14 +128,18 @@ export default function TherapistCarousel() {
                 scale: { duration: 0.3 },
               }}
             >
-              <div className="bg-white/95 rounded-2xl shadow-lg border border-white p-4 relative overflow-hidden">
+              <motion.div
+                className="bg-white/95 rounded-2xl shadow-lg border border-white p-4 relative overflow-hidden cursor-pointer"
+                whileHover={{ scale: 1.02, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+                transition={{ duration: 0.2 }}
+              >
                 {/* Decorative elements */}
                 <div className="absolute top-0 right-0 w-24 h-24 bg-green-100/30 rounded-full -translate-y-12 translate-x-12" />
                 <div className="absolute bottom-0 left-0 w-20 h-20 bg-green-100/30 rounded-full translate-y-10 -translate-x-10" />
 
                 <div className="relative flex items-center gap-3">
                   {/* Photo */}
-                  <div className="flex-shrink-0 w-20 h-20 rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-green-500 to-green-600 border-2 border-white ring-2 ring-green-200">
+                  <div className="flex-shrink-0 w-24 h-24 rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-green-500 to-green-600 border-2 border-white ring-2 ring-green-200">
                     <img
                       src={currentTherapist.image}
                       alt={currentTherapist.name}
@@ -120,9 +183,24 @@ export default function TherapistCarousel() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           </AnimatePresence>
+        </div>
+
+        {/* Position Indicators (Dots) */}
+        <div className="flex justify-center items-center gap-1.5 mt-2">
+          {therapists.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`transition-all duration-300 ${index === currentIndex
+                ? 'w-6 h-1.5 bg-white rounded-full shadow-md'
+                : 'w-1.5 h-1.5 bg-white/40 rounded-full hover:bg-white/60'
+                }`}
+              aria-label={`Go to therapist ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </div>
