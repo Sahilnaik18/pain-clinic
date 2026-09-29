@@ -8,7 +8,7 @@ export default function AdminSettings() {
   const [error, setError] = useState('');
 
   // Set your password here - change this to your desired password
-  const ADMIN_PASSWORD = 'pain@clinic2024'; // ⚠️ CHANGE THIS PASSWORD!
+  const ADMIN_PASSWORD = 'Painclinic@123';
 
   const [openTime, setOpenTime] = useState('10:00 AM');
   const [closeTime, setCloseTime] = useState('8:00 PM');
@@ -254,8 +254,8 @@ export default function AdminSettings() {
                   key={day.value}
                   onClick={() => toggleClosedDay(day.value)}
                   className={`px-4 py-3 rounded-lg border-2 transition-all ${closedDays.includes(day.value)
-                      ? 'bg-red-50 border-red-500 text-red-700 font-semibold'
-                      : 'bg-slate-50 border-slate-300 text-slate-700 hover:border-green-400'
+                    ? 'bg-red-50 border-red-500 text-red-700 font-semibold'
+                    : 'bg-slate-50 border-slate-300 text-slate-700 hover:border-green-400'
                     }`}
                 >
                   {day.label}
