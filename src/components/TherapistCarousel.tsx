@@ -18,20 +18,6 @@ export default function TherapistCarousel() {
     return () => clearInterval(interval);
   }, [isPaused]);
 
-  const goToPrevious = () => {
-    setDirection(-1);
-    setCurrentIndex((prev) => (prev - 1 + therapists.length) % therapists.length);
-    setIsPaused(true);
-    setTimeout(() => setIsPaused(false), 6000);
-  };
-
-  const goToNext = () => {
-    setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % therapists.length);
-    setIsPaused(true);
-    setTimeout(() => setIsPaused(false), 6000);
-  };
-
   const handleIndicatorClick = (index: number) => {
     setDirection(index > currentIndex ? 1 : -1);
     setCurrentIndex(index);
