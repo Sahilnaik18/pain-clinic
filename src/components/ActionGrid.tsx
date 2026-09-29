@@ -96,7 +96,6 @@ export default function ActionGrid() {
             {/* Text Content */}
             <div className="relative z-10 text-center w-full">
               <p className="text-[13px] font-extrabold text-blue-900 mb-0.5 tracking-tight">WEBSITE</p>
-              <p className="text-[10px] text-blue-700 leading-relaxed">Visit our Website</p>
               <p className="text-[9px] text-blue-600 font-semibold mt-1.5">spinephysio.in</p>
             </div>
           </motion.button>
