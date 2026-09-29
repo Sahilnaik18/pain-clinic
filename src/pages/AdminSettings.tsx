@@ -1,13 +1,20 @@
 import { useState, useEffect } from 'react';
-import { Save, ArrowLeft, Clock, Calendar } from 'lucide-react';
+import { Save, ArrowLeft, Clock, Calendar, Lock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function AdminSettings() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  // Set your password here - change this to your desired password
+  const ADMIN_PASSWORD = 'pain@clinic2024'; // ⚠️ CHANGE THIS PASSWORD!
+
   const [openTime, setOpenTime] = useState('10:00 AM');
   const [closeTime, setCloseTime] = useState('8:00 PM');
   const [openHour, setOpenHour] = useState(10);
   const [closeHour, setCloseHour] = useState(20);
-  const [closedDays, setClosedDays] = useState<number[]>([0]); // 0 = Sunday
+  const [closedDays, setClosedDays] = useState<number[]>([0]);
   const [saved, setSaved] = useState(false);
 
   const days = [
@@ -20,23 +27,44 @@ export default function AdminSettings() {
     { value: 6, label: 'Saturday' }
   ];
 
-  // Load saved settings from localStorage
+  // Check if already authenticated in this session
   useEffect(() => {
-    const savedSettings = localStorage.getItem('clinicSettings');
-    if (savedSettings) {
-      const settings = JSON.parse(savedSettings);
-      setOpenTime(settings.openTime);
-      setCloseTime(settings.closeTime);
-      setOpenHour(settings.openHour);
-      setCloseHour(settings.closeHour);
-      setClosedDays(settings.closedDays || [0]);
+    const auth = sessionStorage.getItem('adminAuth');
+    if (auth === 'true') {
+      setIsAuthenticated(true);
     }
   }, []);
+
+  // Load saved settings from localStorage
+  useEffect(() => {
+    if (isAuthenticated) {
+      const savedSettings = localStorage.getItem('clinicSettings');
+      if (savedSettings) {
+        const settings = JSON.parse(savedSettings);
+        setOpenTime(settings.openTime);
+        setCloseTime(settings.closeTime);
+        setOpenHour(settings.openHour);
+        setCloseHour(settings.closeHour);
+        setClosedDays(settings.closedDays || [0]);
+      }
+    }
+  }, [isAuthenticated]);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === ADMIN_PASSWORD) {
+      setIsAuthenticated(true);
+      sessionStorage.setItem('adminAuth', 'true');
+      setError('');
+    } else {
+      setError('Incorrect password. Please try again.');
+      setPassword('');
+    }
+  };
 
   const handleTimeChange = (type: 'open' | 'close', value: string) => {
     if (type === 'open') {
       setOpenTime(value);
-      // Convert to 24-hour format
       const hour = parseInt(value.split(':')[0]);
       const isPM = value.includes('PM');
       setOpenHour(isPM && hour !== 12 ? hour + 12 : hour === 12 && !isPM ? 0 : hour);
@@ -68,16 +96,74 @@ export default function AdminSettings() {
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
 
-    // Reload the page to apply changes
     setTimeout(() => {
       window.location.href = '/pain-clinic';
     }, 1500);
   };
 
+  // Login Screen
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-100 via-slate-50 to-green-50 flex items-center justify-center p-6">
+        <div className="max-w-md w-full">
+          <div className="bg-white rounded-2xl shadow-xl p-8 border border-slate-200">
+            <div className="flex justify-center mb-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center">
+                <Lock className="w-8 h-8 text-white" />
+              </div>
+            </div>
+
+            <h1 className="text-2xl font-bold text-slate-800 text-center mb-2">Admin Access</h1>
+            <p className="text-slate-600 text-center mb-6">Enter password to access settings</p>
+
+            <form onSubmit={handleLogin}>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-slate-700 mb-2">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter admin password"
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-700 focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                  autoFocus
+                />
+              </div>
+
+              {error && (
+                <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                  <p className="text-sm text-red-700">{error}</p>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                className="w-full py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
+              >
+                Login
+              </button>
+            </form>
+
+            <div className="mt-6">
+              <Link
+                to="/pain-clinic"
+                className="text-sm text-slate-600 hover:text-green-700 flex items-center justify-center gap-2"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Back to Clinic Card
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Settings Screen (only shown after authentication)
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-100 via-slate-50 to-green-50 p-6">
       <div className="max-w-2xl mx-auto">
-        {/* Header */}
         <div className="mb-8">
           <Link
             to="/pain-clinic"
@@ -91,7 +177,6 @@ export default function AdminSettings() {
           <p className="text-slate-600">Update your clinic hours and closed days</p>
         </div>
 
-        {/* Settings Card */}
         <div className="bg-white rounded-2xl shadow-xl p-8 border border-slate-200">
 
           {/* Opening Hours Section */}
