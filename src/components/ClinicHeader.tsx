@@ -53,7 +53,7 @@ export default function ClinicHeader() {
           <img
             src="/logo.png"
             alt="Pain Clinic Logo"
-            className="w-16 h-16 object-contain"
+            className="w-20 h-20 object-contain"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.style.display = 'none';
