@@ -1,0 +1,18 @@
+{
+  "name": "Pain Clinic - Physiotherapy & Rehabilitation",
+  "short_name": "Pain Clinic",
+  "description": "Expert physiotherapy services in Karwar",
+  "start_url": "/pain-clinic",
+  "display": "standalone",
+  "background_color": "#00875A",
+  "theme_color": "#00875A",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

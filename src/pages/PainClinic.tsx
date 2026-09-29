@@ -1,8 +1,23 @@
+import { useEffect } from 'react';
 import ClinicHeader from '../components/ClinicHeader';
 import TherapistCarousel from '../components/TherapistCarousel';
 import ActionGrid from '../components/ActionGrid';
 
 export default function PainClinic() {
+  // Track page visit
+  useEffect(() => {
+    // Log visit to localStorage for basic analytics
+    const visits = JSON.parse(localStorage.getItem('clinicVisits') || '[]');
+    visits.push({
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent,
+      referrer: document.referrer || 'direct'
+    });
+    // Keep only last 100 visits
+    if (visits.length > 100) visits.shift();
+    localStorage.setItem('clinicVisits', JSON.stringify(visits));
+  }, []);
+
   return (
     <div className="min-h-screen h-screen flex items-center justify-center overflow-hidden md:p-4 relative" style={{ backgroundColor: '#00875A' }}>
       {/* Background Image Overlay - Desktop only */}

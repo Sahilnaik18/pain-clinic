@@ -75,7 +75,9 @@ export default function ActionGrid() {
           <motion.button
             variants={item}
             onClick={handleWebsite}
-            className="bg-white/95 rounded-2xl p-4 shadow-lg hover:shadow-xl active:scale-[0.98] transition-all flex flex-col items-center justify-between min-h-[125px] border border-white group relative overflow-hidden backdrop-blur-sm"
+            whileHover={{ scale: 1.05, y: -5 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-white/95 rounded-2xl p-4 shadow-lg hover:shadow-2xl active:scale-[0.98] transition-all flex flex-col items-center justify-between min-h-[125px] border border-white group relative overflow-hidden backdrop-blur-sm"
           >
             {/* Decorative pattern */}
             <div className="absolute top-0 right-0 w-20 h-20 bg-blue-200/10 rounded-full -translate-y-10 translate-x-10" />
@@ -104,7 +106,9 @@ export default function ActionGrid() {
           <motion.button
             variants={item}
             onClick={handleAppointment}
-            className="bg-white/95 rounded-2xl p-4 shadow-lg hover:shadow-xl active:scale-[0.98] transition-all flex flex-col items-center justify-between min-h-[125px] border border-white group relative overflow-hidden backdrop-blur-sm"
+            whileHover={{ scale: 1.05, y: -5 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-white/95 rounded-2xl p-4 shadow-lg hover:shadow-2xl active:scale-[0.98] transition-all flex flex-col items-center justify-between min-h-[125px] border border-white group relative overflow-hidden backdrop-blur-sm"
           >
             {/* Decorative pattern */}
             <div className="absolute top-0 right-0 w-20 h-20 bg-green-200/10 rounded-full -translate-y-10 translate-x-10" />
@@ -137,7 +141,9 @@ export default function ActionGrid() {
           <motion.button
             variants={item}
             onClick={handleDirections}
-            className="bg-white/95 rounded-2xl p-4 shadow-lg hover:shadow-xl active:scale-[0.98] transition-all flex flex-col items-center justify-between min-h-[125px] border border-white group relative overflow-hidden backdrop-blur-sm"
+            whileHover={{ scale: 1.05, y: -5 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-white/95 rounded-2xl p-4 shadow-lg hover:shadow-2xl active:scale-[0.98] transition-all flex flex-col items-center justify-between min-h-[125px] border border-white group relative overflow-hidden backdrop-blur-sm"
           >
             {/* Decorative pattern */}
             <div className="absolute top-0 right-0 w-20 h-20 bg-red-200/10 rounded-full -translate-y-10 translate-x-10" />
