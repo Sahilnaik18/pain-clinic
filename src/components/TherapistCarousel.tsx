@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { therapists } from '../data/therapists';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function TherapistCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
