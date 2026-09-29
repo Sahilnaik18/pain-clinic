@@ -107,13 +107,6 @@ export default function ActionGrid() {
               <p className="text-[10px] text-blue-700 leading-relaxed">Visit our Website</p>
               <p className="text-[9px] text-blue-600 font-semibold mt-1.5">spinephysio.in</p>
             </div>
-
-            {/* Button indicator */}
-            <div className="absolute bottom-3 right-3 w-6 h-6 bg-blue-500/10 rounded-full flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
-              <svg className="w-3 h-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
           </motion.button>
 
           {/* Book Appointment */}
@@ -147,13 +140,6 @@ export default function ActionGrid() {
               <p className="text-[12px] font-extrabold text-green-900 mb-0.5 tracking-tight leading-tight">BOOK APPOINTMENT</p>
               <p className="text-[10px] text-green-700 font-semibold">By Phone Call</p>
             </div>
-
-            {/* Button indicator */}
-            <div className="absolute bottom-3 right-3 w-6 h-6 bg-green-500/10 rounded-full flex items-center justify-center group-hover:bg-green-500/20 transition-colors">
-              <svg className="w-3 h-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
           </motion.button>
 
           {/* Directions */}
@@ -182,13 +168,6 @@ export default function ActionGrid() {
             <div className="relative z-10 text-center w-full">
               <p className="text-[13px] font-extrabold text-red-900 mb-0.5 tracking-tight">DIRECTIONS</p>
               <p className="text-[10px] text-red-700 leading-relaxed">Find Us on Map</p>
-            </div>
-
-            {/* Button indicator */}
-            <div className="absolute bottom-3 right-3 w-6 h-6 bg-red-500/10 rounded-full flex items-center justify-center group-hover:bg-red-500/20 transition-colors">
-              <svg className="w-3 h-3 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-              </svg>
             </div>
           </motion.button>
         </div>
