@@ -18,13 +18,6 @@ export default function TherapistCarousel() {
     return () => clearInterval(interval);
   }, [isPaused]);
 
-  const handleIndicatorClick = (index: number) => {
-    setDirection(index > currentIndex ? 1 : -1);
-    setCurrentIndex(index);
-    setIsPaused(true);
-    setTimeout(() => setIsPaused(false), 6000);
-  };
-
   const slideVariants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 300 : -300,
@@ -134,34 +127,6 @@ export default function TherapistCarousel() {
             </motion.div>
           </AnimatePresence>
         </div>
-
-        {/* Indicators */}
-        <div className="flex items-center justify-center gap-2 mt-3">
-          {therapists.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => handleIndicatorClick(index)}
-              className={`transition-all duration-300 ${index === currentIndex
-                ? 'w-7 h-2 bg-white rounded-full shadow-md'
-                : 'w-2 h-2 bg-white/40 hover:bg-white/70 rounded-full'
-                }`}
-              aria-label={`View ${therapists[index].name}`}
-            />
-          ))}
-        </div>
-
-        {/* Progress indicator (optional) */}
-        {!isPaused && (
-          <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-white/30 rounded-full overflow-hidden">
-            <motion.div
-              className="h-full bg-white"
-              initial={{ width: "0%" }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 4, ease: "linear" }}
-              key={currentIndex}
-            />
-          </div>
-        )}
       </div>
     </div>
   );
