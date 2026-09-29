@@ -1,4 +1,4 @@
-import { Globe, Calendar, Phone, Mail, MapPin, Instagram, Share2 } from 'lucide-react';
+import { Globe, Calendar, Phone, MapPin, Instagram, Share2 } from 'lucide-react';
 import { clinic } from '../data/clinic';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
@@ -11,27 +11,15 @@ export default function ActionGrid() {
   };
 
   const handleAppointment = () => {
-    window.location.href = `tel:+91${clinic.phone}`;
-  };
-
-  const handleEmail = () => {
-    window.location.href = `mailto:${clinic.email}`;
+    window.location.href = `tel:+919740809295`;
   };
 
   const handleDirections = () => {
-    if (clinic.mapUrl === 'REPLACE_WITH_GOOGLE_MAPS_LINK') {
-      alert('Map URL not configured. Please update clinic.mapUrl in src/data/clinic.ts');
-    } else {
-      window.open(clinic.mapUrl, '_blank');
-    }
+    window.open(clinic.mapUrl, '_blank');
   };
 
   const handleInstagram = () => {
-    if (clinic.instagramUrl === 'REPLACE_WITH_INSTAGRAM_LINK') {
-      alert('Instagram URL not configured. Please update clinic.instagramUrl in src/data/clinic.ts');
-    } else {
-      window.open(clinic.instagramUrl, '_blank');
-    }
+    window.open(clinic.instagramUrl, '_blank');
   };
 
   const handleShare = async () => {
@@ -182,13 +170,6 @@ export default function ActionGrid() {
             className="w-12 h-12 bg-gradient-to-br from-pink-500 via-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl active:scale-90 transition-all hover:scale-105"
           >
             <Instagram className="w-5 h-5 text-white" />
-          </button>
-
-          <button
-            onClick={handleEmail}
-            className="w-12 h-12 bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl active:scale-90 transition-all hover:scale-105"
-          >
-            <Mail className="w-5 h-5 text-white" />
           </button>
 
           <button

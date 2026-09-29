@@ -3,7 +3,7 @@ export const clinic = {
   tagline: "Physiotherapy & Rehabilitation",
   location: "Kajubaag, Karwar",
   website: "https://spinephysio.in",
-  phone: "8762697832",
+  phone: "9740809295",
   email: "sahilnaik1515@gmail.com",
   whatsapp: "918762697832",
   openingHours: {
@@ -14,6 +14,6 @@ export const clinic = {
   },
   mapUrl: "https://share.google/92FCPJiAprZypMkE4",
   reviewsUrl: "REPLACE_WITH_GOOGLE_MAPS_REVIEWS_LINK",
-  instagramUrl: "REPLACE_WITH_INSTAGRAM_LINK",
+  instagramUrl: "https://www.instagram.com/pain_clinic_physiotherapy_?stkn=MWZqOXZpZGp6Zzlm",
   shareUrl: "https://pain-clinic-otmy.vercel.app/pain-clinic"
 };
