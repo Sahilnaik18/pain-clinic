@@ -22,6 +22,10 @@ export default function ActionGrid() {
     window.open(clinic.instagramUrl, '_blank');
   };
 
+  const handleEmail = () => {
+    window.location.href = `mailto:${clinic.email}`;
+  };
+
   const handleShare = async () => {
     const shareData = {
       title: clinic.name,
@@ -173,8 +177,8 @@ export default function ActionGrid() {
           </button>
 
           <button
-            className="w-12 h-12 bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-600 rounded-full flex items-center justify-center shadow-lg opacity-50 cursor-not-allowed"
-            disabled
+            onClick={handleEmail}
+            className="w-12 h-12 bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl active:scale-90 transition-all hover:scale-105"
           >
             <Mail className="w-5 h-5 text-white" />
           </button>
